@@ -1,16 +1,20 @@
 #pragma once
 
-#include "point.h"
 #include "topology.h"
 
 #include <exception>
 #include <unordered_map>
 
 class World {
+    Point start_;
+    Point curr_;
+    Point end_;
+    std::vector<std::vector<std::unordered_map<Point, Topology::Distance>>> prep_field_;
+
 public:
     class IllegalMoveException : public std::exception {};
 
-    World(const Topology& topology, Point start, Point end);
+    World(const Topology& topology, const Point& start, const Point& end);
 
     std::unordered_map<Point, Topology::Distance> Lookup() const;
 
